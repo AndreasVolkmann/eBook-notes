@@ -1,0 +1,3 @@
+timestampDelimiter: "作成日: "
+dateTimeFormat: "yyyy年M月d日E曜日 H:mm:ss"
+locale: ja
