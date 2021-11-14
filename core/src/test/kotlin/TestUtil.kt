@@ -1,11 +1,13 @@
 package me.avo.ebook.notes
 
 import me.avo.ebook.notes.config.Configuration
+import me.avo.ebook.notes.input.device.DeviceType
 import java.nio.file.Path
 import java.nio.file.Paths
 
 internal object TestUtil {
     val configuration = Configuration(
+        DeviceType.Kindle.toString(),
         getTestResourcePath(), "My Clippings.txt",
         getTestResourcePath(), "Output.csv", "==========")
 

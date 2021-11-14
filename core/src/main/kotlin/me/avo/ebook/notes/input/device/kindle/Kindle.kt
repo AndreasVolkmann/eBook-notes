@@ -6,17 +6,11 @@ import me.avo.ebook.notes.input.device.Device
 import me.avo.ebook.notes.input.device.GenericDeviceNoteProcessor
 import java.nio.file.Files
 
-class Kindle(
-    config: Configuration
-): Device {
+class Kindle(config: Configuration) : Device {
     private val extractor = KindleLineExtractor(config.delimiter)
     private val parser = KindleNoteParser(config.ignoreParsingError, config.dateConfiguration)
     private val processor = GenericDeviceNoteProcessor(extractor, parser)
-    private val notesPath = config.devicePath.resolve(config.deviceFileName)
-
-    init {
-        require(Files.exists(notesPath)) { "Kindle notes path does not exist: $notesPath" }
-    }
+    private val notesPath = config.resolveDeviceFilePath()
 
     override fun getDeviceNotes(): DeviceNoteParseResult {
         val input = Files.readString(notesPath)
